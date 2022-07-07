@@ -1,0 +1,69 @@
+docker run -d -p 5000:5000 --restart=always --name localreg registry:2
+
+docker pull quay.io/prometheus-operator/prometheus-operator:v0.57.0
+docker pull quay.io/prometheus-operator/prometheus-config-reloader:v0.57.0
+docker pull quay.io/prometheus/prometheus:v2.36.2
+docker pull quay.io/prometheus/node-exporter:v1.3.1
+docker pull quay.io/prometheus/alertmanager:v0.24.0
+docker pull quay.io/prometheus-operator/prometheus-operator:main
+docker pull quay.io/prometheus-operator/prometheus-config-reloader:main
+docker pull quay.io/thanos/thanos:main-2022-07-01-5d05c1ff
+docker pull quay.io/prometheus/prometheus:main
+docker pull jettech/kube-webhook-certgen:v1.5.2
+docker pull quay.io/kiwigrid/k8s-sidecar:1.19.2
+docker pull registry.k8s.io/kube-state-metrics/kube-state-metrics:v2.5.0
+docker pull docker.io/grafana/grafana
+docker pull docker.io/bats/bats
+docker pull docker.io/curlimages/curl
+docker pull docker.io/busybox
+docker pull docker.io/grafana/grafana-image-renderer
+
+
+docker tag docker.io/curlimages/curl:latest localhost:5000/curlimages-curl
+docker tag quay.io/thanos/thanos:main-2022-07-01-5d05c1ff localhost:5000/thanos
+docker tag docker.io/grafana/grafana:latest localhost:5000/grafana-grafana
+docker tag quay.io/prometheus/prometheus:main localhost:5000/prometheus
+docker tag quay.io/kiwigrid/k8s-sidecar:1.19.2 localhost:5000/k8s-sidecar
+docker tag docker.io/busybox:latest localhost:5000/busybox
+docker tag quay.io/prometheus-operator/prometheus-config-reloader:v0.57.0 localhost:5000/prometheus-config-reloader
+docker tag quay.io/prometheus-operator/prometheus-operator:v0.57.0 localhost:5000/prometheus-operator
+docker tag registry.k8s.io/kube-state-metrics/kube-state-metrics:v2.5.0 localhost:5000/state-metrics-docker
+docker tag docker.io/bats/bats:latest localhost:5000/bats-bats
+docker tag quay.io/prometheus/alertmanager:v0.24.0 localhost:5000/alertmanager
+docker tag docker.io/grafana/grafana-image-renderer:latest localhost:5000/grafana-image-renderer
+docker tag quay.io/prometheus/node-exporter:v1.3.1 localhost:5000/node-exporter
+docker tag jettech/kube-webhook-certgen:v1.5.2 localhost:5000/kube-webhook-certgen
+
+docker push localhost:5000/curlimages-curl:latest
+docker push localhost:5000/thanos:latest
+docker push localhost:5000/grafana-grafana:latest
+docker push localhost:5000/prometheus:latest
+docker push localhost:5000/k8s-sidecar:latest
+docker push localhost:5000/busybox:latest
+docker push localhost:5000/prometheus-config-reloader:latest
+docker push localhost:5000/prometheus-operator:latest
+docker push localhost:5000/state-metrics-docker:latest
+docker push localhost:5000/bats-bats:latest
+docker push localhost:5000/alertmanager:latest
+docker push localhost:5000/grafana-image-renderer:latest
+docker push localhost:5000/node-exporter:latest
+docker push localhost:5000/kube-webhook-certgen:latest
+
+
+for filenames
+localhost:5000/curlimages-curl
+localhost:5000/thanos
+localhost:5000/grafana-grafana
+localhost:5000/prometheus
+localhost:5000/k8s-sidecar
+localhost:5000/busybox
+localhost:5000/prometheus-config-reloader
+localhost:5000/prometheus-operator
+localhost:5000/state-metrics-docker
+localhost:5000/bats-bats
+localhost:5000/alertmanager
+localhost:5000/grafana-image-renderer
+localhost:5000/node-exporter
+localhost:5000/kube-webhook-certgen
+
+
