@@ -198,13 +198,13 @@ alertmanager:
       repeat_interval: 12h
       receiver: 'null'
       routes:
-        - receiver: 'null'
+      - receiver: 'null'
         matchers:
-          - alertname =~ "InfoInhibitor|Watchdog"
+        - alertname =~ "InfoInhibitor|Watchdog"
     receivers:
-      - name: 'null'
+    - name: 'null'
     templates:
-      - '/etc/alertmanager/config/*.tmpl'
+    - '/etc/alertmanager/config/*.tmpl'
 
   ## Pass the Alertmanager configuration directives through Helm's templating
   ## engine. If the Alertmanager configuration contains Alertmanager templates,
