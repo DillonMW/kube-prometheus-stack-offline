@@ -1,7 +1,7 @@
 # Default values for kube-state-metrics.
 prometheusScrape: true
 image:
-  repository: localhost:5000/state-metrics-docker
+  repository: localhost:5000/state-metrics-docker 
   tag: latest
   pullPolicy: IfNotPresent
 
