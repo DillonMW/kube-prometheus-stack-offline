@@ -200,7 +200,7 @@ alertmanager:
       routes:
       - receiver: 'null'
         matchers:
-        - alertname =~ "InfoInhibitor|Watchdog"
+          - alertname =~ "InfoInhibitor|Watchdog"
     receivers:
     - name: 'null'
     templates:
@@ -445,7 +445,7 @@ alertmanager:
     ##
     image:
       repository: localhost:5000/alertmanager
-      tag: latest
+      tag: v0.24.0
       sha: ""
 
     ## If true then the user will be responsible to provide a secret with alertmanager configuration
@@ -1041,10 +1041,10 @@ kubeControllerManager:
     ## If null or unset, the value is determined dynamically based on target Kubernetes version due to change
     ## of default port in Kubernetes 1.22.
     ##
-    port: null
-    targetPort: null
-    # selector:
-    #   component: kube-controller-manager
+    port: 10252
+    targetPort: 10252
+    selector:
+      component: kube-controller-manager
 
   serviceMonitor:
     enabled: true
@@ -1270,10 +1270,10 @@ kubeScheduler:
     ## If null or unset, the value is determined dynamically based on target Kubernetes version due to change
     ## of default port in Kubernetes 1.23.
     ##
-    port: null
-    targetPort: null
-    # selector:
-    #   component: kube-scheduler
+    port: 10251
+    targetPort: 10251
+    selector:
+      component: kube-scheduler
 
   serviceMonitor:
     enabled: true
@@ -1479,7 +1479,7 @@ prometheus-node-exporter:
   rbac:
     ## If true, create PSPs for node-exporter
     ##
-    pspEnabled: false
+    pspEnabled: true
 
 ## Manages Prometheus and Alertmanager components
 ##
@@ -1511,7 +1511,7 @@ prometheusOperator:
       enabled: true
       image:
         repository: localhost:5000/kube-webhook-certgen
-        tag: latest
+        tag: "latest"
         sha: ""
         pullPolicy: IfNotPresent
       resources: {}
@@ -1737,7 +1737,7 @@ prometheusOperator:
   ##
   image:
     repository: localhost:5000/prometheus-operator
-    tag: latest
+    tag: "latest"
     sha: ""
     pullPolicy: IfNotPresent
 
@@ -1755,7 +1755,7 @@ prometheusOperator:
     # image to use for config and rule reloading
     image:
       repository: localhost:5000/prometheus-config-reloader
-      tag: latest
+      tag: "latest"
       sha: ""
 
     # resource config for prometheusConfigReloader
@@ -1771,7 +1771,7 @@ prometheusOperator:
   ##
   thanosImage:
     repository: localhost:5000/thanos
-    tag: latest
+    tag: "latest"
     sha: ""
 
   ## Set a Field Selector to filter watched secrets
@@ -2189,7 +2189,7 @@ prometheus:
     ##
     image:
       repository: localhost:5000/prometheus
-      tag: latest
+      tag: v2.36.2
       sha: ""
 
     ## Tolerations for use with node taints
@@ -3007,7 +3007,7 @@ thanosRuler:
     ##
     image:
       repository: localhost:5000/thanos
-      tag: latest
+      tag: "latest"
       sha: ""
 
     ## Namespaces to be selected for PrometheusRules discovery.
