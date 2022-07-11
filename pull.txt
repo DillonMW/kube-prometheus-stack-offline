@@ -1,3 +1,5 @@
+#All resources needed for values yaml files needed for offline install
+
 docker run -d -p 5000:5000 --restart=always --name localreg registry:2
 
 docker pull quay.io/prometheus-operator/prometheus-operator:v0.57.0
@@ -48,27 +50,3 @@ docker push localhost:5000/alertmanager:v0.24.0
 docker push localhost:5000/grafana-image-renderer:latest
 docker push localhost:5000/node-exporter:latest
 docker push localhost:5000/kube-webhook-certgen:latest
-
-
-for filenames
-localhost:5000/curlimages-curl
-localhost:5000/thanos
-localhost:5000/grafana-grafana
-localhost:5000/prometheus
-localhost:5000/k8s-sidecar
-localhost:5000/busybox
-localhost:5000/prometheus-config-reloader
-localhost:5000/prometheus-operator
-localhost:5000/state-metrics-docker
-localhost:5000/bats-bats
-localhost:5000/alertmanager
-localhost:5000/grafana-image-renderer
-localhost:5000/node-exporter
-localhost:5000/kube-webhook-certgen
-
-
-
-testing for in alertmanagers values file:
-docker pull jimmidyson/configmap-reload
-docker tag docker.io/jimmidyson/configmap-reload:latest localhost:5000/configmap-reload
-docker push localhost:5000/configmap-reload
