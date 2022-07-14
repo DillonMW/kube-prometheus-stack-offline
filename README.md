@@ -27,7 +27,7 @@ If any changes are made to files outside of kube-prometheus-stack, run the comma
 
 To install run:
 
-  Helm install <name> kube-prometheus-stack/ -n <namespace>
+  Helm install name kube-prometheus-stack/ -n namespace
 
 Depending on the version of kubernetes being run, the ports that kube-controller-manager and kube-scheduler are on are different and will need to be changed in the kube-prometheus-stack values.vaml file.
 
