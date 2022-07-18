@@ -7,8 +7,6 @@ docker pull quay.io/prometheus-operator/prometheus-config-reloader:v0.57.0
 docker pull quay.io/prometheus/prometheus:v2.36.2
 docker pull quay.io/prometheus/node-exporter:v1.3.1
 docker pull quay.io/prometheus/alertmanager:v0.24.0
-docker pull quay.io/prometheus-operator/prometheus-operator:main
-docker pull quay.io/prometheus-operator/prometheus-config-reloader:main
 docker pull quay.io/thanos/thanos:main-2022-07-01-5d05c1ff
 docker pull quay.io/prometheus/prometheus:v2.36.2
 docker pull jettech/kube-webhook-certgen:v1.5.2
@@ -27,8 +25,8 @@ docker tag docker.io/grafana/grafana:latest localhost:5000/grafana-grafana
 docker tag quay.io/prometheus/prometheus:v2.36.2 localhost:5000/prometheus:v2.36.2
 docker tag quay.io/kiwigrid/k8s-sidecar:1.19.2 localhost:5000/k8s-sidecar
 docker tag docker.io/busybox:latest localhost:5000/busybox
-docker tag quay.io/prometheus-operator/prometheus-config-reloader:v0.57.0 localhost:5000/prometheus-config-reloader
-docker tag quay.io/prometheus-operator/prometheus-operator:v0.57.0 localhost:5000/prometheus-operator 
+docker tag quay.io/prometheus-operator/prometheus-config-reloader:v0.57.0 localhost:5000/prometheus-config-reloader:v0.57.0
+docker tag quay.io/prometheus-operator/prometheus-operator:v0.57.0 localhost:5000/prometheus-operator:v0.57.0 
 docker tag registry.k8s.io/kube-state-metrics/kube-state-metrics:v2.5.0 localhost:5000/state-metrics-docker
 docker tag docker.io/bats/bats:latest localhost:5000/bats-bats
 docker tag quay.io/prometheus/alertmanager:v0.24.0 localhost:5000/alertmanager:v0.24.0
@@ -42,8 +40,8 @@ docker push localhost:5000/grafana-grafana:latest
 docker push localhost:5000/prometheus:v2.36.2
 docker push localhost:5000/k8s-sidecar:latest
 docker push localhost:5000/busybox:latest
-docker push localhost:5000/prometheus-config-reloader:latest
-docker push localhost:5000/prometheus-operator:latest
+docker push localhost:5000/prometheus-config-reloader:v0.57.0
+docker push localhost:5000/prometheus-operator:v0.57.0
 docker push localhost:5000/state-metrics-docker:latest
 docker push localhost:5000/bats-bats:latest
 docker push localhost:5000/alertmanager:v0.24.0
