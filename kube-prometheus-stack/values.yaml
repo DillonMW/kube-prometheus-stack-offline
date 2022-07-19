@@ -1479,7 +1479,7 @@ prometheus-node-exporter:
   rbac:
     ## If true, create PSPs for node-exporter
     ##
-    pspEnabled: true
+    pspEnabled: false
 
 ## Manages Prometheus and Alertmanager components
 ##
