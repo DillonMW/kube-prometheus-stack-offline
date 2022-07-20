@@ -9,7 +9,7 @@ docker pull quay.io/prometheus/node-exporter:v1.3.1
 docker pull quay.io/prometheus/alertmanager:v0.24.0
 docker pull quay.io/thanos/thanos:main-2022-07-01-5d05c1ff
 docker pull quay.io/prometheus/prometheus:v2.36.2
-docker pull jettech/kube-webhook-certgen:v1.5.2
+docker pull liangjw/kube-webhook-certgen:v1.1
 docker pull quay.io/kiwigrid/k8s-sidecar:1.19.2
 docker pull registry.k8s.io/kube-state-metrics/kube-state-metrics:v2.5.0
 docker pull docker.io/grafana/grafana
@@ -32,7 +32,7 @@ docker tag docker.io/bats/bats:latest localhost:5000/bats-bats
 docker tag quay.io/prometheus/alertmanager:v0.24.0 localhost:5000/alertmanager:v0.24.0
 docker tag docker.io/grafana/grafana-image-renderer:latest localhost:5000/grafana-image-renderer        
 docker tag quay.io/prometheus/node-exporter:v1.3.1 localhost:5000/node-exporter 
-docker tag jettech/kube-webhook-certgen:v1.5.2 localhost:5000/kube-webhook-certgen       
+docker tag liangjw/kube-webhook-certgen:v1.1 localhost:5000/liangjw-kube-webhook-certgen
 
 docker push localhost:5000/curlimages-curl:latest
 docker push localhost:5000/thanos:latest
@@ -47,4 +47,6 @@ docker push localhost:5000/bats-bats:latest
 docker push localhost:5000/alertmanager:v0.24.0
 docker push localhost:5000/grafana-image-renderer:latest
 docker push localhost:5000/node-exporter:latest
-docker push localhost:5000/kube-webhook-certgen:latest
+docker push localhost:5000/liangjw-kube-webhook-certgen
+
+
