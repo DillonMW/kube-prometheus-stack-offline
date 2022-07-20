@@ -1,0 +1,17 @@
+tls-san:
+  - 127.0.0.1
+
+kube-controller-manager-arg:
+  - "bind-address=0.0.0.0"
+  - "address=192.168.122.16"
+
+kube-scheduler-arg:
+  - "bind-address=0.0.0.0"
+  - "address=192.168.122.16"
+
+kube-proxy-arg:
+  - "bind-address=0.0.0.0"
+  - "metrics-bind-address=0.0.0.0:10249"
+
+etcd-arg:
+  - "listen-metrics-urls=http://127.0.0.1:2381,http://192.168.122.16:2381"
