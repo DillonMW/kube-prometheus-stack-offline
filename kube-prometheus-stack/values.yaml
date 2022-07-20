@@ -1029,7 +1029,8 @@ kubeControllerManager:
 
   ## If your kube controller manager is not deployed as a pod, specify IPs it can be found on
   ##
-  endpoints: []
+  endpoints:
+  #  - 192.168.122.16
   # - 10.141.4.22
   # - 10.141.4.23
   # - 10.141.4.24
@@ -1191,7 +1192,8 @@ kubeEtcd:
 
   ## If your etcd is not deployed as a pod, specify IPs it can be found on
   ##
-  endpoints: []
+  endpoints:
+  #  - 192.168.122.16
   # - 10.141.4.22
   # - 10.141.4.23
   # - 10.141.4.24
@@ -1258,7 +1260,8 @@ kubeScheduler:
 
   ## If your kube scheduler is not deployed as a pod, specify IPs it can be found on
   ##
-  endpoints: []
+  endpoints:
+  #  - 192.168.122.16
   # - 10.141.4.22
   # - 10.141.4.23
   # - 10.141.4.24
@@ -1322,7 +1325,8 @@ kubeProxy:
 
   ## If your kube proxy is not deployed as a pod, specify IPs it can be found on
   ##
-  endpoints: []
+  endpoints:
+    - 192.168.122.16
   # - 10.141.4.22
   # - 10.141.4.23
   # - 10.141.4.24
@@ -1435,7 +1439,7 @@ prometheus-node-exporter:
     jobLabel: node-exporter
   extraArgs:
     - --collector.filesystem.mount-points-exclude=^/(dev|proc|sys|var/lib/docker/.+|var/lib/kubelet/.+)($|/)
-    - --collector.filesystem.fs-types-exlocalhost:5000/liangjw-kube-webhook-certgenclude=^(autofs|binfmt_misc|bpf|cgroup2?|configfs|debugfs|devpts|devtmpfs|fusectl|hugetlbfs|iso9660|mqueue|nsfs|overlay|proc|procfs|pstore|rpc_pipefs|securityfs|selinuxfs|squashfs|sysfs|tracefs)$
+    - --collector.filesystem.fs-types-exclude=^(autofs|binfmt_misc|bpf|cgroup2?|configfs|debugfs|devpts|devtmpfs|fusectl|hugetlbfs|iso9660|mqueue|nsfs|overlay|proc|procfs|pstore|rpc_pipefs|securityfs|selinuxfs|squashfs|sysfs|tracefs)$
   service:
     portName: http-metrics
   prometheus:
@@ -1737,7 +1741,7 @@ prometheusOperator:
   ##
   image:
     repository: localhost:5000/prometheus-operator
-    tag: "latest"
+    tag: "v0.57.0"
     sha: ""
     pullPolicy: IfNotPresent
 
@@ -1755,7 +1759,7 @@ prometheusOperator:
     # image to use for config and rule reloading
     image:
       repository: localhost:5000/prometheus-config-reloader
-      tag: "latest"
+      tag: "v0.57.0"
       sha: ""
 
     # resource config for prometheusConfigReloader
