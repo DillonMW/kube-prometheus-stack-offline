@@ -29,6 +29,8 @@ To install run:
 
   Helm install name kube-prometheus-stack/ -n namespace
 
-Depending on the version of kubernetes being run, the ports that kube-controller-manager and kube-scheduler are on are different and will need to be changed in the kube-prometheus-stack values.vaml file.
 
-These are currently set to ports 10252 and 10251 respecivly, but on the latest versions may need to be set to 10257 and 10259.
+Hard Coded options that need to be changed in the grafana dashboard: 
+  Option max:
+  - Guage Clusters in CPU Usage (in cores) and Memory Usage (in bytes)
+  - GB Disk space available and GB Disk space used (in bytes)
