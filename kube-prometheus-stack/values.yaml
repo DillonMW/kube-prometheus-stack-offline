@@ -1041,8 +1041,8 @@ kubeControllerManager:
     ## If null or unset, the value is determined dynamically based on target Kubernetes version due to change
     ## of default port in Kubernetes 1.22.
     ##
-    port: 10252
-    targetPort: 10252
+    port: 10257
+    targetPort: 10257
     selector:
       component: kube-controller-manager
 
@@ -1060,7 +1060,7 @@ kubeControllerManager:
     ## Requires proper certs (not self-signed) and delegated authentication/authorization checks.
     ## If null or unset, the value is determined dynamically based on target Kubernetes version.
     ##
-    https: null
+    https: true
 
     # Skip TLS certificate validation when scraping
     insecureSkipVerify: null
@@ -1270,8 +1270,8 @@ kubeScheduler:
     ## If null or unset, the value is determined dynamically based on target Kubernetes version due to change
     ## of default port in Kubernetes 1.23.
     ##
-    port: 10251
-    targetPort: 10251
+    port: 10259
+    targetPort: 10259
     selector:
       component: kube-scheduler
 
@@ -1287,10 +1287,10 @@ kubeScheduler:
     ## Requires proper certs (not self-signed) and delegated authentication/authorization checks.
     ## If null or unset, the value is determined dynamically based on target Kubernetes version.
     ##
-    https: null
+    https: true
 
     ## Skip TLS certificate validation when scraping
-    insecureSkipVerify: null
+    insecureSkipVerify: true
 
     ## Name of the server to use when validating TLS certificate
     serverName: null
@@ -1435,7 +1435,7 @@ prometheus-node-exporter:
     jobLabel: node-exporter
   extraArgs:
     - --collector.filesystem.mount-points-exclude=^/(dev|proc|sys|var/lib/docker/.+|var/lib/kubelet/.+)($|/)
-    - --collector.filesystem.fs-types-exclude=^(autofs|binfmt_misc|bpf|cgroup2?|configfs|debugfs|devpts|devtmpfs|fusectl|hugetlbfs|iso9660|mqueue|nsfs|overlay|proc|procfs|pstore|rpc_pipefs|securityfs|selinuxfs|squashfs|sysfs|tracefs)$
+    - --collector.filesystem.fs-types-exlocalhost:5000/liangjw-kube-webhook-certgenclude=^(autofs|binfmt_misc|bpf|cgroup2?|configfs|debugfs|devpts|devtmpfs|fusectl|hugetlbfs|iso9660|mqueue|nsfs|overlay|proc|procfs|pstore|rpc_pipefs|securityfs|selinuxfs|squashfs|sysfs|tracefs)$
   service:
     portName: http-metrics
   prometheus:
@@ -1510,7 +1510,7 @@ prometheusOperator:
     patch:
       enabled: true
       image:
-        repository: localhost:5000/kube-webhook-certgen
+        repository: localhost:5000/liangjw-kube-webhook-certgen
         tag: "latest"
         sha: ""
         pullPolicy: IfNotPresent
