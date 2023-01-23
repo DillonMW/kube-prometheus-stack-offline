@@ -2551,7 +2551,7 @@
                 "uid": "${DS_PROMETHEUS}"
               },
               "editorMode": "code",
-              "expr": "sum (rate (container_cpu_usage_seconds_total{id=\"/\", node=~\"$Node\"}[$range])) / sum (machine_cpu_cores) * 100",
+              "expr": "sum (rate (container_cpu_usage_seconds_total{node=~\"$Node\"}[$range])) / sum (machine_cpu_cores) * 100",
               "legendFormat": "{{label_name}}",
               "range": true,
               "refId": "A"
@@ -2621,7 +2621,7 @@
                 "uid": "${DS_PROMETHEUS}"
               },
               "editorMode": "code",
-              "expr": "sum (rate (container_cpu_usage_seconds_total{id=\"/\",node=~\"$Node\"}[$range])) / sum (machine_cpu_cores) * 100",
+              "expr": "sum (rate (container_cpu_usage_seconds_total{node=~\"$Node\"}[$range])) / sum (machine_cpu_cores) * 100",
               "legendFormat": "{{pod}}",
               "range": true,
               "refId": "A"
@@ -2695,7 +2695,7 @@
                 "uid": "${DS_PROMETHEUS}"
               },
               "editorMode": "code",
-              "expr": "sum (rate (container_cpu_usage_seconds_total{id=\"/\", node=~\"$Node\"}[$range])) / sum (machine_cpu_cores) * 100",
+              "expr": "sum (rate (container_cpu_usage_seconds_total{node=~\"$Node\"}[$range])) / sum (machine_cpu_cores) * 100",
               "legendFormat": "{{pod}}",
               "range": true,
               "refId": "A"
