@@ -1,3 +1,6 @@
+NOTE: Use updated_dashboards!
+<b></b>
+
 Files used for offline installation of kube-prometheus-stack (community helm chart project for launching prometheus and grafana) 
 
 The projects community pages:
