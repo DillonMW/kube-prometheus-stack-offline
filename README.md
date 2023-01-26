@@ -30,7 +30,3 @@ To install run:
   Helm install name kube-prometheus-stack/ -n namespace
 
 
-Hard Coded options that need to be changed in the grafana dashboard: 
-  Option max:
-  - Guage Clusters in CPU Usage (in cores) and Memory Usage (in bytes)
-  - GB Disk space available and GB Disk space used (in bytes)
