@@ -102,7 +102,7 @@
           "refId": "A"
         }
       ],
-      "title": "Nodes Ready",
+      "title": "Num Nodes Ready",
       "type": "stat"
     },
     {
@@ -239,7 +239,7 @@
           "refId": "A"
         }
       ],
-      "title": "Nodes Not Ready",
+      "title": "Num Nodes Not Ready",
       "type": "stat"
     },
     {
@@ -265,7 +265,7 @@
               "type": "value"
             }
           ],
-          "noValue": "All Ready",
+          "noValue": "All  Ready",
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -710,7 +710,7 @@
         ],
         "legend": {
           "displayMode": "list",
-          "placement": "bottom",
+          "placement": "right",
           "showLegend": true,
           "values": []
         },
@@ -776,9 +776,9 @@
         "x": 0,
         "y": 42
       },
-      "id": 89,
+      "id": 90,
       "panels": [],
-      "title": "LongHorn",
+      "title": "Longhorn",
       "type": "row"
     },
     {
@@ -936,7 +936,7 @@
         "x": 0,
         "y": 43
       },
-      "id": 87,
+      "id": 92,
       "options": {
         "footer": {
           "enablePagination": false,
@@ -1122,7 +1122,7 @@
         "x": 0,
         "y": 48
       },
-      "id": 90,
+      "id": 94,
       "options": {
         "legend": {
           "calcs": [],
@@ -1216,7 +1216,7 @@
         "x": 12,
         "y": 48
       },
-      "id": 92,
+      "id": 102,
       "options": {
         "legend": {
           "calcs": [],
@@ -1280,7 +1280,7 @@
         "x": 0,
         "y": 56
       },
-      "id": 93,
+      "id": 96,
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -1346,7 +1346,7 @@
         "x": 12,
         "y": 56
       },
-      "id": 84,
+      "id": 104,
       "options": {
         "colorMode": "value",
         "graphMode": "area",
@@ -1433,7 +1433,7 @@
         "x": 0,
         "y": 64
       },
-      "id": 91,
+      "id": 98,
       "options": {
         "footer": {
           "enablePagination": false,
@@ -1545,7 +1545,7 @@
         "x": 12,
         "y": 64
       },
-      "id": 85,
+      "id": 106,
       "options": {
         "footer": {
           "enablePagination": false,
@@ -1644,7 +1644,7 @@
         "x": 0,
         "y": 72
       },
-      "id": 106,
+      "id": 100,
       "options": {
         "footer": {
           "enablePagination": false,
@@ -1743,7 +1743,7 @@
         "x": 12,
         "y": 72
       },
-      "id": 105,
+      "id": 108,
       "options": {
         "footer": {
           "enablePagination": false,
@@ -2101,7 +2101,7 @@
         "x": 12,
         "y": 94
       },
-      "id": 107,
+      "id": 83,
       "options": {
         "displayLabels": [
           "name",
@@ -2176,7 +2176,7 @@
             "axisPlacement": "auto",
             "barAlignment": 0,
             "drawStyle": "line",
-            "fillOpacity": 36,
+            "fillOpacity": 0,
             "gradientMode": "none",
             "hideFrom": {
               "legend": false,
@@ -2184,9 +2184,6 @@
               "viz": false
             },
             "lineInterpolation": "linear",
-            "lineStyle": {
-              "fill": "solid"
-            },
             "lineWidth": 1,
             "pointSize": 5,
             "scaleDistribution": {
@@ -2196,19 +2193,20 @@
             "spanNulls": false,
             "stacking": {
               "group": "A",
-              "mode": "normal"
+              "mode": "none"
             },
             "thresholdsStyle": {
               "mode": "off"
             }
           },
           "mappings": [],
+          "max": 100,
+          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -2218,28 +2216,15 @@
           },
           "unit": "% of CPU"
         },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Value"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "$Node"
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
-        "h": 12,
-        "w": 19,
+        "h": 11,
+        "w": 12,
         "x": 0,
         "y": 103
       },
-      "id": 23,
+      "id": 88,
       "options": {
         "legend": {
           "calcs": [],
@@ -2252,7 +2237,6 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "8.5.3",
       "targets": [
         {
           "datasource": {
@@ -2260,13 +2244,13 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "sum by (node)(rate (container_cpu_usage_seconds_total{}[$range])) / sum by (node) (machine_cpu_cores{}) * 100",
-          "legendFormat": "{{label_name}}",
+          "expr": "100 - (avg by (instance)(rate(node_cpu_seconds_total{mode=\"idle\", instance=~\"$Instance\"}[1m])) *100)",
+          "legendFormat": "__auto",
           "range": true,
           "refId": "A"
         }
       ],
-      "title": "CPU Usage {$range} {$Node} ",
+      "title": "Avg CPU Usage (Instance/Node) {$Instance}",
       "type": "timeseries"
     },
     {
@@ -2314,8 +2298,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -2328,10 +2311,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 12,
-        "w": 19,
-        "x": 0,
-        "y": 115
+        "h": 11,
+        "w": 12,
+        "x": 12,
+        "y": 103
       },
       "id": 47,
       "options": {
@@ -2353,13 +2336,17 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "sum by(pod, namespace) (rate(container_cpu_usage_seconds_total{image!=\"\", namespace=~\"$Namespaces\",node=~\"$Node\"}[$range]))",
+          "exemplar": false,
+          "expr": "sum by (pod)(rate(container_cpu_usage_seconds_total{image!=\"\", namespace=~\"$Namespaces\",node=~\"$Node\"}[$range]))",
+          "hide": false,
+          "instant": false,
           "legendFormat": "{{pod}}",
           "range": true,
-          "refId": "A"
+          "refId": "B"
         }
       ],
-      "title": "CPU Usage (Pod) {$range} {$Namespaces} {$Node}",
+      "title": "Pod CPU Usage (Pod) {$range} {$Namespaces} {$Node}",
+      "transformations": [],
       "type": "timeseries"
     },
     {
@@ -2368,7 +2355,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 127
+        "y": 114
       },
       "id": 14,
       "panels": [],
@@ -2421,8 +2408,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -2438,7 +2424,7 @@
         "h": 14,
         "w": 24,
         "x": 0,
-        "y": 128
+        "y": 115
       },
       "id": 76,
       "options": {
@@ -2467,7 +2453,7 @@
           "refId": "A"
         }
       ],
-      "title": "Current Memory Usage (Pod) {$Namespaces} {$Node} ",
+      "title": "Pod Memory Usage (Pod) {$Namespaces} {$Node} ",
       "type": "timeseries"
     },
     {
@@ -2486,8 +2472,8 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
-            "drawStyle": "bars",
-            "fillOpacity": 100,
+            "drawStyle": "line",
+            "fillOpacity": 0,
             "gradientMode": "none",
             "hideFrom": {
               "legend": false,
@@ -2516,8 +2502,7 @@
             "mode": "percentage",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "#EAB839",
@@ -2537,7 +2522,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 142
+        "y": 129
       },
       "id": 63,
       "options": {
@@ -2561,14 +2546,14 @@
           },
           "editorMode": "code",
           "exemplar": false,
-          "expr": "sum by(namespace) (container_memory_working_set_bytes{container!=\"\", namespace=~\"$Namespaces\",node=~\"$Node\"})",
+          "expr": "sum by(node) (container_memory_working_set_bytes{container!=\"\", namespace=~\"$Namespaces\",node=~\"$Node\"})",
           "instant": false,
           "legendFormat": "{{pod}}",
           "range": true,
           "refId": "A"
         }
       ],
-      "title": "Current Memory Usage (Namespace) {$Namespaces} {$Node}",
+      "title": "Pod Memory Usage (Node) {$Namespaces} {$Node}",
       "type": "timeseries"
     },
     {
@@ -2576,6 +2561,7 @@
         "type": "prometheus",
         "uid": "prometheus"
       },
+      "description": "",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -2587,8 +2573,8 @@
             "axisLabel": "",
             "axisPlacement": "auto",
             "barAlignment": 0,
-            "drawStyle": "bars",
-            "fillOpacity": 100,
+            "drawStyle": "line",
+            "fillOpacity": 0,
             "gradientMode": "none",
             "hideFrom": {
               "legend": false,
@@ -2605,24 +2591,18 @@
             "spanNulls": false,
             "stacking": {
               "group": "A",
-              "mode": "normal"
+              "mode": "none"
             },
             "thresholdsStyle": {
               "mode": "off"
             }
           },
           "mappings": [],
-          "min": 0,
           "thresholds": {
-            "mode": "percentage",
+            "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "#EAB839",
-                "value": 60
+                "color": "green"
               },
               {
                 "color": "red",
@@ -2638,9 +2618,9 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 142
+        "y": 129
       },
-      "id": 64,
+      "id": 86,
       "options": {
         "legend": {
           "calcs": [],
@@ -2653,7 +2633,6 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "9.0.3",
       "targets": [
         {
           "datasource": {
@@ -2661,15 +2640,14 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "exemplar": false,
-          "expr": "sum by(node) (container_memory_working_set_bytes{container!=\"\", node=~\"$Node\"})",
-          "instant": false,
-          "legendFormat": "{{pod}}",
+          "expr": "node_memory_MemTotal_bytes{instance=~\"$Instance\"} - (node_memory_Buffers_bytes{instance=~\"$Instance\"} + node_memory_MemFree_bytes{instance=~\"$Instance\"} + node_memory_Cached_bytes{instance=~\"$Instance\"})",
+          "hide": false,
+          "legendFormat": "{{instance}}",
           "range": true,
-          "refId": "A"
+          "refId": "B"
         }
       ],
-      "title": "Current Memory Usage (Node) {$Node}",
+      "title": "Memory Used Hardware (Node) {$Instance}",
       "type": "timeseries"
     }
   ],
@@ -2685,15 +2663,15 @@
         "auto_min": "10s",
         "current": {
           "selected": false,
-          "text": "15m",
-          "value": "15m"
+          "text": "1m",
+          "value": "1m"
         },
         "hide": 0,
         "label": "Range",
         "name": "range",
         "options": [
           {
-            "selected": false,
+            "selected": true,
             "text": "1m",
             "value": "1m"
           },
@@ -2708,7 +2686,7 @@
             "value": "10m"
           },
           {
-            "selected": true,
+            "selected": false,
             "text": "15m",
             "value": "15m"
           },
@@ -2736,9 +2714,13 @@
       },
       {
         "current": {
-          "selected": false,
-          "text": "All",
-          "value": "$__all"
+          "selected": true,
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
         },
         "datasource": {
           "type": "prometheus",
@@ -2791,17 +2773,48 @@
         "skipUrlSync": false,
         "sort": 0,
         "type": "query"
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "prometheus"
+        },
+        "definition": "label_values(instance)",
+        "hide": 0,
+        "includeAll": true,
+        "label": "Instance",
+        "multi": true,
+        "name": "Instance",
+        "options": [],
+        "query": {
+          "query": "label_values(instance)",
+          "refId": "StandardVariableQuery"
+        },
+        "refresh": 1,
+        "regex": "^.*:9100$",
+        "skipUrlSync": false,
+        "sort": 4,
+        "type": "query"
       }
     ]
   },
   "time": {
-    "from": "now-15m",
+    "from": "now-5m",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "America/New_York",
-  "title": "RKE2 metrics w/ longhorn",
-  "uid": "XomPcZk4z",
-  "version": 6,
+  "title": "RKE2 metrics - W/ Longhorn",
+  "uid": "vhcVm3R4zsatwrrewdeSFAdzlonh",
+  "version": 5,
   "weekStart": ""
 }
